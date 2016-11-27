@@ -26,7 +26,7 @@ for dest in seagate wd; do
 
 #    rsync3 $* --iconv=utf-8-mac,utf-8 --exclude .Apple* --progress --delete -avHe ssh nas:/${dir}/ /Volumes/seagate\ horizontal/${dir}; 
 #    $cmd
-	cmd="rsync3 $* --iconv=utf-8-mac,utf-8 --exclude .Apple* --progress --delete -avHe ssh nas:/${dir}/ /Volumes/$dest/${dir}"
+	cmd="rsync $* --iconv=utf-8-mac,utf-8 --exclude .Apple* --progress --delete -avHe ssh nas:/${dir}/ /Volumes/$dest/${dir}"
 	echo $cmd
 	$cmd
 
