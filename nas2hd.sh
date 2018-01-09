@@ -21,7 +21,7 @@ for dest in seagate wd; do
 	
 	echo; echo
 #	for dir in photos movies backup vmbackups; do
-	for dir in photos movies backup; do 
+	for dir in photos movies backup vmbackups; do 
 	    #	for dir in vmbackups; do 
 	    # echo; echo ${dir}...
 	    # run_cmd=`echo $cmd|sed "s/00cmdline00/$*/" | sed "s/00dir00/$dir/g" | sed "s/00dest00/$dest/g"`
@@ -34,13 +34,13 @@ for dest in seagate wd; do
 
 	    # cmd="rsync $* --iconv=utf-8-mac,utf-8 --exclude .Apple* --progress --delete -avHe ssh nas:/${dir}/ /Volumes/$dest/${dir}"
 	    #	    cmd="rsync $* --iconv=utf-8-mac,utf-8 --exclude .Apple* --progress --delete -avHe ssh "
-	    cmd="rsync $* --exclude ccc.sparsebundle --iconv=utf-8-mac,utf-8 --exclude .Apple* --progress -avHe ssh "
+	    cmd="rsync $* --delete --exclude *ccc* --iconv=utf-8-mac,utf-8 --exclude .Apple* --progress -avHe ssh "
 
 
 	    if [ $name == "nas2hd.sh" ]; then
-		cmd=${cmd}"mtns-nas:/${dir}/ /Volumes/$dest/${dir}/"
+		cmd=${cmd}"nas:/${dir}/ /Volumes/$dest/${dir}/"
 	    else
-		cmd=${cmd}"/Volumes/$dest/${dir}/ mtns-nas:/${dir}/"
+		cmd=${cmd}"/Volumes/$dest/${dir}/ nas:/${dir}/"
 	    fi
 	    echo $cmd
 	    $cmd
